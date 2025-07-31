@@ -1,29 +1,33 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
+import { Stack, useRouter } from "expo-router";
+import { useEffect } from "react";
 
-import { useColorScheme } from '@/hooks/useColorScheme';
+
+function ProtectedRoute({ children }: { children: React.ReactNode }) {
+  const router = useRouter();
+  const isLoggedIn = false;
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (!isLoggedIn) {
+        router.replace("/auth-screen");
+      }
+    }, 0);
+
+    return () => clearTimeout(timer);
+  }, [isLoggedIn]);
+
+  return <>{children}</>;
+}
+
+
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
-
-  if (!loaded) {
-    // Async font loading only occurs in development.
-    return null;
-  }
-
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+    <ProtectedRoute>
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
+        <Stack.Screen name="auth-screen" options={{ headerShown: false }} />
       </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    </ProtectedRoute>
   );
 }
