@@ -1,20 +1,24 @@
 import { Stack, useRouter } from "expo-router";
 import { useEffect } from "react";
+import { AuthProvider, useAuth } from "./AuthContext";
 
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const router = useRouter();
-  const isLoggedIn = false;
+  const { user } = useAuth();
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (!isLoggedIn) {
+      if (!user) {
         router.replace("/auth-screen");
+      }
+      else {
+        router.replace("/");
       }
     }, 0);
 
     return () => clearTimeout(timer);
-  }, [isLoggedIn]);
+  }, [user]);
 
   return <>{children}</>;
 }
@@ -23,11 +27,13 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
 
 export default function RootLayout() {
   return (
-    <ProtectedRoute>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="auth-screen" options={{ headerShown: false }} />
-      </Stack>
-    </ProtectedRoute>
+    <AuthProvider>
+      <ProtectedRoute>
+        <Stack>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="auth-screen" options={{ headerShown: false }} />
+        </Stack>
+      </ProtectedRoute>
+    </AuthProvider>
   );
 }
