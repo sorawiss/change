@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "harn-tang",
-    "slug": "harn-tang",
+    "name": "change",
+    "slug": "change",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "harntang",
+    "scheme": "change",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
@@ -16,7 +16,8 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "sorawiss.change"
     },
     "web": {
       "bundler": "metro",

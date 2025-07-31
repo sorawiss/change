@@ -2,23 +2,24 @@ import { Stack, useRouter } from "expo-router";
 import { useEffect } from "react";
 import { AuthProvider, useAuth } from "./AuthContext";
 
-
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const router = useRouter();
-  const { user } = useAuth();
+  const { user, isLoading } = useAuth();
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    if (!isLoading) {
       if (!user) {
         router.replace("/auth-screen");
-      }
-      else {
+      } else {
         router.replace("/");
       }
-    }, 0);
+    }
+  }, [user, isLoading, router]);
 
-    return () => clearTimeout(timer);
-  }, [user]);
+  // Don't render anything while loading to avoid navigation conflicts
+  if (isLoading) {
+    return null;
+  }
 
   return <>{children}</>;
 }
