@@ -1,6 +1,6 @@
 import { View, KeyboardAvoidingView, Platform } from "react-native";
 import { TextInput, Text, Button, useTheme } from 'react-native-paper'
-import styles from "./style-sheet";
+import { styles }  from "./style-sheet";
 import { useState } from "react";
 import { useAuth } from "./AuthContext";
 import { useRouter } from "expo-router";

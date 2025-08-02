@@ -2,13 +2,13 @@ import React from 'react'
 import { Text, View } from 'react-native'
 
 
-function LoginScreen() {
+function StreakScreen() {
     return (
         <View>
-            <Text>LoginScreen</Text>
+            <Text>StreakScreen</Text>
 
         </View>
     )
 }
 
-export default LoginScreen
+export default StreakScreen

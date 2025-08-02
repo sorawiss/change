@@ -1,6 +1,7 @@
 import { Stack, useRouter } from "expo-router";
 import { useEffect } from "react";
 import { AuthProvider, useAuth } from "./AuthContext";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const router = useRouter();
@@ -30,10 +31,12 @@ export default function RootLayout() {
   return (
     <AuthProvider>
       <ProtectedRoute>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="auth-screen" options={{ headerShown: false }} />
-        </Stack>
+        <SafeAreaProvider>
+          <Stack >
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="auth-screen" options={{ headerShown: false }} />
+          </Stack>
+        </SafeAreaProvider>
       </ProtectedRoute>
     </AuthProvider>
   );
