@@ -7,3 +7,8 @@ client
 
 export const account = new Account(client);
 export const databases = new Databases(client);
+
+
+
+export const databaseID = process.env.EXPO_PUBLIC_APPWRITE_DATABASE_ID!
+export const collectionID = process.env.EXPO_PUBLIC_APPWRITE_COLLECTION_ID!
