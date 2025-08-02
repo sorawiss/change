@@ -51,12 +51,12 @@ function AuthScreen() {
   return (
     <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={styles.container} >
       <View>
-        <Text style={styles.title}>AuthScreen</Text>
+        <Text style={styles.title}>เข้าสู่ระบบ</Text>
       </View>
 
       <TextInput
-        label="Email"
-        placeholder="Barev@gmail.com"
+        label="อีเมล"
+        placeholder="อีเมล"
         autoCapitalize="none"
         keyboardType="email-address"
         mode="outlined"
@@ -66,8 +66,8 @@ function AuthScreen() {
       />
 
       <TextInput
-        label="Password"
-        placeholder="123456"
+        label="รหัสผ่าน"
+        placeholder="รหัสผ่าน"
         autoCapitalize="none"
         secureTextEntry
         mode="outlined"
@@ -78,8 +78,8 @@ function AuthScreen() {
 
       {error && <Text style={{ color: theme.colors.error }}>{error}</Text>}
 
-      <Button mode="contained" style={styles.input} onPress={handleSubmit} >{isSignUp ? "Sign up" : "Sign in"}</Button>
-      <Button style={styles.input} onPress={handleSignUp} >{isSignUp ? "Sign in" : "Sign up"}</Button>
+      <Button mode="contained" style={styles.input} onPress={handleSubmit} >{isSignUp ? "สมัครสมาชิก" : "เข้าสู่ระบบ"}</Button>
+      <Button style={styles.input} onPress={handleSignUp} >{isSignUp ? "เข้าสู่ระบบ" : "สมัครสมาชิก"}</Button>
 
 
 
